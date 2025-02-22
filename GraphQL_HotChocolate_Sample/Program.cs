@@ -1,4 +1,3 @@
-
 namespace GraphQL_HotChocolate_Sample
 {
     public class Program
@@ -13,6 +12,8 @@ namespace GraphQL_HotChocolate_Sample
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
+            builder.Services.AddGraphQLServer();
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -24,7 +25,6 @@ namespace GraphQL_HotChocolate_Sample
             app.UseHttpsRedirection();
 
             app.UseAuthorization();
-
 
             app.MapControllers();
 
