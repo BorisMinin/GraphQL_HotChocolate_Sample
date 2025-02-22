@@ -1,0 +1,1 @@
+# GraphQL_HotChocolate_Sample
