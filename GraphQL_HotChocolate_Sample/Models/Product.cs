@@ -1,4 +1,5 @@
 ﻿namespace GraphQL_HotChocolate_Sample.Models;
+
 public class Product
 {
     public int Id { get; set; }

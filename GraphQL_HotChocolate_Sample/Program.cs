@@ -1,3 +1,5 @@
+using GraphQL_HotChocolate_Sample.Queries;
+
 namespace GraphQL_HotChocolate_Sample
 {
     public class Program
@@ -12,7 +14,8 @@ namespace GraphQL_HotChocolate_Sample
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
-            builder.Services.AddGraphQLServer();
+            builder.Services.AddGraphQLServer()
+                .AddQueryType<CategoryQuery>();
 
             var app = builder.Build();
 
@@ -27,6 +30,8 @@ namespace GraphQL_HotChocolate_Sample
             app.UseAuthorization();
 
             app.MapControllers();
+
+            app.MapGraphQL("/graphql");
 
             app.Run();
         }
