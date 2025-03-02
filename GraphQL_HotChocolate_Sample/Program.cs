@@ -15,7 +15,7 @@ namespace GraphQL_HotChocolate_Sample
             builder.Services.AddOpenApi();
 
             builder.Services.AddGraphQLServer()
-                .AddQueryType<CategoryQuery>();
+                .AddQueryType<Query>();
 
             var app = builder.Build();
 
@@ -27,11 +27,9 @@ namespace GraphQL_HotChocolate_Sample
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
-
             app.MapControllers();
 
-            app.MapGraphQL("/graphql");
+            app.MapGraphQL();
 
             app.Run();
         }
