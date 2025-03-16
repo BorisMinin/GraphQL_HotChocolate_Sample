@@ -14,8 +14,7 @@ namespace GraphQL_HotChocolate_Sample
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
-            builder.Services.AddGraphQLServer()
-                .AddQueryType<Query>();
+            builder.Services.AddGraphQLServer().AddQueryType<Query>();
 
             var app = builder.Build();
 
@@ -27,9 +26,19 @@ namespace GraphQL_HotChocolate_Sample
 
             app.UseHttpsRedirection();
 
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path == "/")
+                {
+                    context.Response.Redirect("/graphql");
+                    return;
+                }
+                await next();
+            });
+
             app.MapControllers();
 
-            app.MapGraphQL();
+            app.MapGraphQL("/graphql");
 
             app.Run();
         }

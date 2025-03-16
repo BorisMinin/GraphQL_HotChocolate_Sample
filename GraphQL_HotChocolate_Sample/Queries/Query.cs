@@ -40,7 +40,7 @@ public class Query
     };
     #endregion
 
-    [GraphQLDescription("Returns all producsts")]
+    [GraphQLDescription("Returns all products")]
     public IEnumerable<Product> GetProducts() => _products;
 
     [GraphQLDescription("Returns the specified Product")]
