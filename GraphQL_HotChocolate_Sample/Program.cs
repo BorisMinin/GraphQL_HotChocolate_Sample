@@ -1,4 +1,7 @@
+using GraphQL_HotChocolate_Sample.Mutations;
 using GraphQL_HotChocolate_Sample.Queries;
+using GraphQL_HotChocolate_Sample.Repositories;
+using GraphQL_HotChocolate_Sample.Subscriptions;
 
 namespace GraphQL_HotChocolate_Sample
 {
@@ -14,15 +17,19 @@ namespace GraphQL_HotChocolate_Sample
             // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
             builder.Services.AddOpenApi();
 
-            builder.Services.AddGraphQLServer().AddQueryType<Query>();
+            builder.Services.AddGraphQLServer()
+                .AddQueryType<Query>()
+                .AddMutationType<Mutation>()
+                .AddSubscriptionType<Subscription>()
+                .AddInMemorySubscriptions();
+
+            builder.Services.AddScoped<ProductRepository>();
 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
-            {
                 app.MapOpenApi();
-            }
 
             app.UseHttpsRedirection();
 
